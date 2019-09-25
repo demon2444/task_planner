@@ -27,6 +27,7 @@
 <div class="container">
 
     <header>Task Planner</header>
+    <div id="time"></div>
 
 
 </div>
@@ -112,6 +113,9 @@
 
     <button type="button" class="btn btn-success" id="show">Show Time</button>
 </div>
+
+
+
 </div>
 </div>
 

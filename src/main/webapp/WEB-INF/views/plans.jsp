@@ -74,7 +74,7 @@
                         <td>
                             <a href="/plan/update/${u.id}" class="btn btn-info">Edytuj</a></td>
                         <td>
-                            <a href="/plan/done/${u.id}" class="btn btn-success">Zrobione</a>
+                            <a href="/plan/done/${u.id}/${timeSes}" class="btn btn-success">Zrobione</a>
                         </td>
                     </tr>
                 </c:forEach>

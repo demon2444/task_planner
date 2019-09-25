@@ -34,5 +34,6 @@
 
     </c:forEach>
 </table>
+<script src="../../js/time.js"></script>
 </body>
 </html>

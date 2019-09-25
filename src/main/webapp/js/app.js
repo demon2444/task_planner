@@ -5,7 +5,6 @@ $(function () {
     //console.log(time);
 
     function showTime() {
-        console.log("timeForm")
         setInterval(timeForm, 1000)
 
     }

@@ -70,6 +70,18 @@ public class PlanService {
         return dateTime;
     }
 
+
+    public Date setDateFrom(String dateForm) {
+        Date dateTime = new Date();
+        try {
+            dateTime = SDF_DATE_TIME.parse(dateForm);
+        } catch (ParseException ex) {
+
+        }
+        return dateTime;
+    }
+
+
     public List<Plan> findByName(String name) {
         List<Plan> planSearch = planRepository.findAllByNameContainingIgnoreCase(name);
         spitDateTime(planSearch);

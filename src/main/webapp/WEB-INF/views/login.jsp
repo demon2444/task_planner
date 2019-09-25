@@ -21,14 +21,33 @@
     <title>Show my Plans</title>
 </head>
 <body>
-<%@include file="fragments/header.jspf"%>
+<%@include file="fragments/header.jspf" %>
 
 
-<form:form method="post" modelAttribute="">
-    <form:input path="email" placeholder="mail"/><br>
-    <form:input path="pasword" placeholder="password"/><br>
-    <input type="submit" value="Zaloguj">
-</form:form>
+<div class="card text-center">
+    <div class="card-header">
+        Featured
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Zaloguj się do serwisu</h5>
+
+        <form:form method="post" modelAttribute="user">
+
+            <form:input path="email" placeholder="mail"/>
+            <p class="card-text"></p>
+            <form:input path="password" placeholder="password"/>
+            <p class="card-text"></p>
+            <input type="submit" class="btn btn-primary" value="Zaloguj">
+        </form:form>
+
+
+
+    </div>
+    <div class="card-footer text-muted">
+        <div id="time"></div>
+    </div>
+</div>
+
 
 <!-- js -->
 <script src="/js/app.js"></script>
@@ -43,7 +62,6 @@
         crossorigin="anonymous"></script>
 
 
-
-
+<script src="../../js/time.js"></script>
 </body>
 </html>

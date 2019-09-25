@@ -14,12 +14,12 @@
 
 <div class="container">
 
-    <header>Dodaj swój plan</header>
+    <header>Dodaj swój plan <div id="time"></div></header>
 
     <div class="card">
 
         <div class="card-body">
-            <a href="/plan/planMatrix" class="btn btn-primary">Back</a>
+            <a href="/" class="btn btn-primary">Powrót</a>
         </div>
     </div>
 
@@ -51,7 +51,7 @@
 </div>
 
 </div>
-
+<script src="../../js/time.js"></script>
 
 </body>
 </html>

@@ -105,17 +105,28 @@ public class PlanController {
     @PostMapping("/day")
     public String daySchedule(Model model, @RequestParam String dayStart, @RequestParam String hourStart) {
         Date timeStart = planService.setDate(dayStart, hourStart);
+        String timeSes = dayStart + " " + hourStart;
         List<Plan> plans = planService.findyByDay(timeStart);
         if(plans.isEmpty()) {
             return "noPlans";
         } else {
             planService.spitDateTime(plans);
             model.addAttribute("plans", plans);
+            model.addAttribute("timeSes", timeSes);
             return "plans";
         }
 
     }
-
+    @GetMapping("/done/{id}/{timeSes}")
+    public String doneTask(Model model, @PathVariable String timeSes, @PathVariable Long id) {
+        Plan plan = planService.findById(id);
+        plan.setDone(true);
+        planService.savePlan(plan);
+        Date date = planService.setDateFrom(timeSes);
+        List<Plan> plans = planService.findyByDay(date);
+        model.addAttribute("plans", plans);
+        return "plans";
+    }
 
 
 

@@ -15,7 +15,7 @@
 <div class="container">
 
     <header>Plan na dziś</header>
-
+    <div id="time"></div>
     <div class="card">
 
         <div class="card-body">
@@ -28,8 +28,8 @@
 
 
             <form method="post" action="/plan/day">
-                <input type="date" name="dayStart"  placeholder="Wybierz dzień"/>
-                <input type="time" name="hourStart" placeholder="Wybierz dzień"/>
+                <input type="date" name="dayStart"  id="today" placeholder="Wybierz dzień"/>
+                <input type="time" name="hourStart" value="07:00" placeholder="Wybierz godzinę"/>
 
 
 
@@ -41,7 +41,8 @@
     </div>
 
 </div>
-
+<script src="/js/app.js"></script>
+<script src="../../js/time.js"></script>
 
 </body>
 </html>
