@@ -31,42 +31,12 @@
 
 </div>
 <div class="container">
-<div class="card mt-4">
-    <div class="card-body">
+    <div class="card mt-4">
+        <div class="card-body">
 
-        <table class="table table-hover">
-            <thead class="thead-dark">
-            <tr>
-                <th scope="col">Nazwa zadania</th>
-                <th scope="col">Opis zadania</th>
-                <th scope="col">Data rozpoczęcia</th>
-                <th scope="col">Godzina rozpoczęcia</th>
-                <th scope="col">Data zakończenia</th>
-                <th scope="col">Godzina zakończenia</th>
-                <th scope="col">Edytuj</th>
-                <th scope="col">Zakończ</th>
-            </tr>
-            </thead>
-            <tbody>
-            <c:forEach items="${resultSearch}" var="u">
-                <tr class="table-info">
-                    <td>${u.name}</td>
-                    <td>${u.description}</td>
-                    <td>${u.dateStartView}</td>
-                    <td>${u.timeStartView}</td>
-                    <td>${u.dateStopView}</td>
-                    <td>${u.timeStopView}</td>
-                    <td>
-                        <a href="/plan/update/${u.id}" class="btn btn-info">Edytuj</a></td>
-                    <td>
-                        <a href="/plan/done/${u.id}" class="btn btn-success">Zrobione</a>
-                    </td>
-                </tr>
-            </c:forEach>
-            </tbody>
+            Brak Planów na wskazany dzień
 
-        </table>
-    </div>
+        </div>
     </div>
 </div>
 </div>
@@ -74,7 +44,7 @@
 
 <div class="container">
 
-    <button type="button" class="btn btn-success" id="show">Show Time</button>
+    <a href="/plan/" class="btn btn-info">Powrót</a>
 </div>
 </div>
 </div>

@@ -11,6 +11,7 @@ import pl.coderslab.springbootproject.model.Plan;
 import pl.coderslab.springbootproject.service.PlanService;
 
 import javax.validation.Valid;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -23,8 +24,6 @@ public class PlanController {
     public PlanController(PlanService planService) {
         this.planService = planService;
     }
-
-
 
 
     @GetMapping("/show/{id}")
@@ -47,7 +46,7 @@ public class PlanController {
         if (result.hasErrors()) {
             System.err.println(err);
             return "addPlan";
-        }else {
+        } else {
             plan.setDone(false);
             plan.setTimeStart(planService.setDate(plan.getDateStartView(), plan.getTimeStartView()));
             plan.setTimeStop(planService.setDate(plan.getDateStopView(), plan.getTimeStopView()));
@@ -69,17 +68,55 @@ public class PlanController {
         model.addAttribute("nInU", notImportantNotUrgent);
         return "planMatrix";
     }
+
     @GetMapping("/find")
     public String findByName() {
         return "search";
     }
 
     @PostMapping("/find")
-    public String findByName(Model model, @PathVariable String searchKey) {
-        System.out.println(searchKey);
+    public String findByName(Model model, @RequestParam String searchKey) {
         List<Plan> resultSearch = planService.findByName(searchKey);
         model.addAttribute("resultSearch", resultSearch);
         return "search";
     }
+
+    @GetMapping("/update/{id}")
+    public String updatePlan(@PathVariable Long id, Model model) {
+        Plan plan = planService.findById(id);
+        model.addAttribute(plan);
+        return "addPlan";
+    }
+
+
+    @PostMapping("/update/{id}")
+    public String updatePlan(@ModelAttribute @Valid Plan plan, BindingResult result) {
+        if (result.hasErrors()) {
+            return "addPlan";
+        }
+        planService.savePlan(plan);
+        return "plans";
+    }
+    @GetMapping("/day")
+    public String daySchedule() {
+        return "day";
+    }
+
+    @PostMapping("/day")
+    public String daySchedule(Model model, @RequestParam String dayStart, @RequestParam String hourStart) {
+        Date timeStart = planService.setDate(dayStart, hourStart);
+        List<Plan> plans = planService.findyByDay(timeStart);
+        if(plans.isEmpty()) {
+            return "noPlans";
+        } else {
+            planService.spitDateTime(plans);
+            model.addAttribute("plans", plans);
+            return "plans";
+        }
+
+    }
+
+
+
 
 }

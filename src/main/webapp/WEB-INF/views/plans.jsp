@@ -21,31 +21,79 @@
     <title>Show my Plans</title>
 </head>
 <body>
-<%@include file="fragments/header.jspf"%>
+<%@include file="fragments/header.jspf" %>
 
 
-<table>
-    <th>Id</th>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Start Task</th>
-    <th>End Task</th>
-    <c:forEach items="${plans}" var="u">
-        <tr>
-            <td>${u.id}</td>
-            <td>${u.name}</td>
-            <td>${u.description}</td>
-            <td>${u.timeStartView}</td>
-            <td>${u.timeStopView}</td>
+<div class="container">
 
-        </tr>
+    <header>Task Planner</header>
 
-    </c:forEach>
-</table>
-<br><br><br>
+
+</div>
+<div class="container">
+    <div class="card mt-4">
+        <div class="card-body">
+
+            <table class="table table-hover">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Nazwa zadania</th>
+                    <th scope="col">Opis zadania</th>
+                    <th scope="col">Data rozpoczęcia</th>
+                    <th scope="col">Godzina rozpoczęcia</th>
+                    <th scope="col">Godzina zakończenia</th>
+                    <th scope="col">Edytuj</th>
+                    <th scope="col">Zakończ</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${plans}" var="u">
+
+
+                    <c:choose>
+                        <c:when test="${u.urgent && u.important}">
+                            <tr class="table-danger">
+                        </c:when>
+                        <c:when test="${!u.urgent && u.important}">
+                            <tr class="table-info">
+                        </c:when>
+                        <c:when test="${u.urgent && !u.important}">
+                            <tr class="table-warning">
+                        </c:when>
+
+                        <c:otherwise>
+                            <tr class="bg-dark">
+                        </c:otherwise>
+                    </c:choose>
+
+                        <td>${u.name}</td>
+                        <td>${u.description}</td>
+                        <td>${u.dateStartView}</td>
+                        <td>${u.timeStartView}</td>
+                        <td>${u.timeStopView}</td>
+                        <td>
+                            <a href="/plan/update/${u.id}" class="btn btn-info">Edytuj</a></td>
+                        <td>
+                            <a href="/plan/done/${u.id}" class="btn btn-success">Zrobione</a>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+</div>
+
+
 <div class="container">
 
     <button type="button" class="btn btn-success" id="show">Show Time</button>
+</div>
+</div>
+</div>
+
 </div>
 
 <!-- js -->
@@ -59,8 +107,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
-
 
 
 </body>

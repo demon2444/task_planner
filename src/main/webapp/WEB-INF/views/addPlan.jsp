@@ -30,7 +30,7 @@
 <form:form method="post" modelAttribute="plan">
     <form:input path="name" placeholder="Nazwa Planu"/><br>
     <form:input path="description" placeholder="Opis planu"/><br>
-    <form:input type="number" path="user.id" placeholder="User Id"/><br>
+    <form:hidden path="user.id" placeholder="User Id"/><br>
     <form:input type="date" path="dateStartView" placeholder="Start day"/>
     <form:input type="time" path="timeStartView" placeholder="Start time"/><br>
     <form:input type="date" path="dateStopView" placeholder="Stop day"/>

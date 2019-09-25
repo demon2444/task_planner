@@ -17,7 +17,7 @@ import java.util.List;
 public class PlanService {
 
     private static final SimpleDateFormat SDF_DATE = new SimpleDateFormat("dd-MM-yyyy");
-    private static final SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat("dd.MM.yyyy HH:mm");
+    private static final SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat("yyyy-MM-dd HH:mm");
     private static final SimpleDateFormat SDF_TIME = new SimpleDateFormat("HH-mm-ss");
 
     private PlanRepository planRepository;
@@ -29,14 +29,18 @@ public class PlanService {
 
     public List<Plan> showPlans(Long userId) {
         List<Plan> allByUserId = planRepository.findAllByUserId(userId);
-        for (Plan p : allByUserId) {
+        spitDateTime(allByUserId);
+        return allByUserId;
+    }
+
+    public void spitDateTime(List<Plan> plans) {
+        for (Plan p : plans) {
 
             p.setDateStartView(getDate(p.getTimeStart()));
             p.setTimeStartView(getTime(p.getTimeStart()));
             p.setDateStopView(getDate(p.getTimeStop()));
             p.setTimeStopView(getTime(p.getTimeStop()));
         }
-        return allByUserId;
     }
 
 
@@ -68,13 +72,16 @@ public class PlanService {
 
     public List<Plan> findByName(String name) {
         List<Plan> planSearch = planRepository.findAllByNameContainingIgnoreCase(name);
-        for (Plan p : planSearch) {
-            p.setDateStartView(getDate(p.getTimeStart()));
-            p.setTimeStartView(getTime(p.getTimeStart()));
-            p.setDateStopView(getDate(p.getTimeStop()));
-            p.setTimeStopView(getTime(p.getTimeStop()));
-        }
+        spitDateTime(planSearch);
         return planSearch;
     }
+    public Plan findById(Long id) {
+        return planRepository.findFirstById(id);
+    }
+
+    public List<Plan> findyByDay(Date timeStart) {
+        return planRepository.findAllByTimeStart(timeStart);
+    }
+
 
 }
