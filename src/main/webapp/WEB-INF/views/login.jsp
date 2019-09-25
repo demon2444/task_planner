@@ -18,15 +18,20 @@
     <link href="<c:url value="/webjars/bootstrap/4.3.1/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
-    <title>Show my Plans</title>
+    <title>Logowanie</title>
 </head>
 <body>
 <%@include file="fragments/header.jspf" %>
 
 
+<div class="card mt-4">
+
+
 <div class="card text-center">
+<div class="card mt-4">
     <div class="card-header">
-        Featured
+
+
     </div>
     <div class="card-body">
         <h5 class="card-title">Zaloguj się do serwisu</h5>
@@ -44,10 +49,12 @@
 
     </div>
     <div class="card-footer text-muted">
-        <div id="time"></div>
+        <div id="time"></div><div id="day"></div>
     </div>
 </div>
+</div>
 
+</div>
 
 <!-- js -->
 <script src="/js/app.js"></script>

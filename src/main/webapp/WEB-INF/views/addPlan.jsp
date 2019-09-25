@@ -29,7 +29,7 @@
 
 <form:form method="post" modelAttribute="plan">
     <form:input path="name" placeholder="Nazwa Planu"/><br>
-    <form:input path="description" placeholder="Opis planu"/><br>
+    <form:textarea path="description" placeholder="Opis planu"/><br>
     <form:hidden path="user.id" placeholder="User Id"/><br>
     <form:input type="date" path="dateStartView" placeholder="Start day"/>
     <form:input type="time" path="timeStartView" placeholder="Start time"/><br>
@@ -38,11 +38,11 @@
 
 
     <label>Ważne</label>
-    <form:radiobutton path="important" value="true"/>Yes
-    <form:radiobutton path="important" value="false"/>No<br>
+    <form:radiobutton path="important" value="true"/>Tak
+    <form:radiobutton path="important" value="false"/>Nie<br>
     <label>Pilne</label>
-    <form:radiobutton path="urgent" value="true"/>Yes
-    <form:radiobutton path="urgent" value="false"/>No<br>
+    <form:radiobutton path="urgent" value="true"/>Tak
+    <form:radiobutton path="urgent" value="false"/>Nie<br>
     <input type="submit" value="Dodaj">
 </form:form>
 
