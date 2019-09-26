@@ -47,10 +47,8 @@
         <form:form method="post" modelAttribute="user">
 
             <form:input path="username" placeholder="Login"/>
-            <form:errors path="username" cssClass="error"/>
             <p class="card-text"></p>
-            <form:input path="password" placeholder="Hasło"/>
-            <form:errors path="password" cssClass="error"/>
+            <form:input path="password"  type="password" placeholder="Hasło"/>
             <p class="card-text"></p>
             <input type="submit" class="btn btn-primary" value="Zaloguj">
         </form:form>

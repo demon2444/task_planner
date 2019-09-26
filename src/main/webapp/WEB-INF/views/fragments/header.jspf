@@ -45,14 +45,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/plan/day">Plan na dziś</a>
                     </li>
+                <sec:authorize access="isAnonymous()">
                     <li class="nav-item">
-                        <a class="nav-link " href="/login">Zaloguj</a>
+                        <a class="nav-link" href="/login">Zaloguj</a>
                     </li>
+                </sec:authorize>
                     <sec:authorize access="isAuthenticated()">
                         <li class="nav-item">
 
-                            <form action="<c:url value="/logout"/>" method="post">
-                                <input type="submit" value="Wyloguj">
+                            <%--<form action="/logout" method="post">
+                                <a href="javascript:;" onclick="parentNode.submit();"><%=n%></a>
+                                <input type="hidden" name="mess" value=<%=n%>/>
+                            </form>--%>
+                            <%--<a class="nav-link" methods="post" href="/logout">Wyloguj</a>--%>
+
+                            <form action="<c:url value="/logout"/>" method="post" class="nav-link">
+                                <input type="submit" class="nav-item" value="Wyloguj">
                                 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             </form>
                         </li>
