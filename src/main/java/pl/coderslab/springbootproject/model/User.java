@@ -88,10 +88,9 @@ public class User {
         return password;
     }
 
-    public User setPassword(String password) {
+    public void setPassword(String password) {
 
-        this.password = BCrypt.hashpw(password, BCrypt.gensalt());
-        return this;
+        this.password = password;
     }
 
     public String getEmail() {

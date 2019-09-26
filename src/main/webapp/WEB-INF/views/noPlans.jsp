@@ -44,7 +44,7 @@
 
 <div class="container">
 
-    <a href="/plan/plans" class="btn btn-info">Powrót</a>
+    <a href="/" class="btn btn-info">Powrót</a>
 </div>
 </div>
 </div>

@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation
         .web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import pl.coderslab.springbootproject.service.SpringDataUserDetailsService;
+import pl.coderslab.springbootproject.service.UserService;
+import pl.coderslab.springbootproject.service.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
@@ -15,10 +18,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-
-                .antMatchers("/plan/**", "/user/**").permitAll()
+                .antMatchers("/plan/**").hasRole("USER")
+                .antMatchers("/user/**").hasRole("ADMIN")
                 .and().formLogin()
-                .loginPage("/login")
+                .loginPage("/login").defaultSuccessUrl("/plan/day")
                 .and().logout().logoutSuccessUrl("/")
                 .and().exceptionHandling().accessDeniedPage("/403");         ;
     }
@@ -27,6 +30,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
+
+    @Bean
+    public SpringDataUserDetailsService customUserDetailsService() {
+        return new SpringDataUserDetailsService();
+    }
+
+
 
 
 }

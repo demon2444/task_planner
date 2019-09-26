@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (month < 10) month = "0" + month;
         if (day < 10) day = "0" + day;
 
-        var today = year + "-" + month + "-" + day;
-        $("#theDate").attr("value", today);
+        let today = year + "-" + month + "-" + day;
+        $("#theDate").attr("today", today);
     });
 
     let days = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];

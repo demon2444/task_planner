@@ -15,7 +15,7 @@
 <div class="container">
 
     <header>Plan na dziś</header>
-    <div id="time"></div>
+    <div id="time"></div><div id="day"></div>
     <div class="card">
 
         <div class="card-body">
@@ -27,13 +27,13 @@
         <div class="card-body">
 
 
-            <form method="post" action="/plan/day">
+            <form method="get" action="/plan/dayF">
                 <input type="date" name="dayStart"  id="today" placeholder="Wybierz dzień"/>
                 <input type="time" name="hourStart" value="07:00" placeholder="Wybierz godzinę"/>
 
 
 
-                <input type="submit" value="Sprawdź">
+                <input type="submit" class="btn btn-dark" value="Sprawdź">
             </form>
 
 

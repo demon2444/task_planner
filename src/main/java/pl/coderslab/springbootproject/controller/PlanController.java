@@ -86,25 +86,46 @@ public class PlanController {
     @GetMapping("/update/{id}")
     public String updatePlan(@PathVariable Long id, Model model) {
         Plan plan = planService.findById(id);
-        model.addAttribute(plan);
+        model.addAttribute("plan",plan);
         return "addPlan";
     }
 
 
     @PostMapping("/update/{id}")
-    public String updatePlan(@ModelAttribute @Valid Plan plan, BindingResult result) {
+    public String updatePlan(@PathVariable @ModelAttribute @Valid Plan id, BindingResult result) {
         if (result.hasErrors()) {
             return "addPlan";
         }
-        planService.savePlan(plan);
+        planService.savePlan(id);
         return "plans";
     }
+
     @GetMapping("/day")
     public String daySchedule() {
         return "day";
     }
 
-    @PostMapping("/day")
+
+    @GetMapping("/dayF")
+    public String dayScheduleFind(Model model, @RequestParam(defaultValue = "") String dayStart, @RequestParam(defaultValue = "") String hourStart ) {
+
+        Date timeStart = planService.setDate(dayStart, hourStart);
+        String timeSes = dayStart + " " +    hourStart;
+        List<Plan> plans = planService.findyByDay(timeStart);
+        if(plans.isEmpty()) {
+            return "noPlans";
+        } else {
+            planService.spitDateTime(plans);
+            model.addAttribute("plans", plans);
+            model.addAttribute("timeSes", timeSes);
+            return "plans";
+        }
+
+
+        //return "day";
+    }
+
+    /*@PostMapping("/day")
     public String daySchedule(Model model, @RequestParam String dayStart, @RequestParam String hourStart) {
         Date timeStart = planService.setDate(dayStart, hourStart);
         String timeSes = dayStart + " " +    hourStart;
@@ -118,7 +139,9 @@ public class PlanController {
             return "plans";
         }
 
-    }
+    }*/
+
+
     @GetMapping("/done/{id}/{timeSes}")
     public String doneTask(Model model, @PathVariable String timeSes, @PathVariable Long id) {
         Plan plan = planService.findById(id);

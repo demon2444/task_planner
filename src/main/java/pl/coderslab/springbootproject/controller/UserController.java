@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springbootproject.model.User;
 import pl.coderslab.springbootproject.service.UserService;
+import pl.coderslab.springbootproject.service.UserServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserController {
 
 
     private UserService userService;
+
 
     @Autowired
     public UserController(UserService userService) {
@@ -55,17 +57,8 @@ public class UserController {
         return "allUsers";
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        return "login";
-    }
 
-    @PostMapping("/login")
-    public String login(@ModelAttribute @Valid User user, BindingResult result){
-        /*if() {
-
-        }*/
-        return "";
-    }
 
 }
+
+

@@ -18,6 +18,7 @@ public class SpringBootProjectApplication implements CommandLineRunner {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final BCryptPasswordEncoder encoder;
+
     public SpringBootProjectApplication(UserRepository userRepository,RoleRepository roleRepository, BCryptPasswordEncoder encoder) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
@@ -41,6 +42,18 @@ public class SpringBootProjectApplication implements CommandLineRunner {
             roleRepository.save(adminRole);
         }
 
+        if(userRepository.findUserByUsername("user")==null){
+            User user = new User();
+            user.setEmail("user@mail.com");
+            user.setUsername("user");
+            user.setPassword(encoder.encode("user"));
+            user.setFirstName("user");
+            user.setLastName("Name");
+            user.setEnabled(true);
+            Role userRole = roleRepository.findRoleByName("ROLE_USER");
+            user.setRoles(new HashSet<>(Arrays.asList(userRole)));
+            userRepository.save(user);
+        }
         if(userRepository.findUserByUsername("admin")==null){
             User admin = new User();
             admin.setEmail("admin@mail.com");
