@@ -47,8 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"];
 
 
-
     let today = new Date();
-    let date = days[today.getDay()] +' '+ today.getDay() + ' ' +(monthNames[today.getMonth()])+' '+ today.getFullYear();
+    let date = days[today.getDay()] +' '+ today.getUTCDate() + ' ' +(monthNames[today.getMonth()])+' '+ today.getFullYear();
     document.getElementById('day').innerHTML = date;
 });

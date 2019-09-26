@@ -13,10 +13,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/").permitAll()
-                .antMatchers("/plan").authenticated()
-                .antMatchers("/user").authenticated()
-                .and().formLogin();
+
+                .antMatchers("/plan/**", "/user/**").hasAnyAuthority()
+                .and().formLogin()
+                .loginPage("/login")
+                .and().logout().logoutSuccessUrl("/")
+                .and().exceptionHandling().accessDeniedPage("/403")
+                ;
     }
 
 

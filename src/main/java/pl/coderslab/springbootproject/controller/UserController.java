@@ -1,6 +1,7 @@
 package pl.coderslab.springbootproject.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -46,6 +47,7 @@ public class UserController {
         }
     }
 
+    @Secured("ROLE_ADMIN")
     @GetMapping("/all")
     public String showAllUsers(Model model) {
         List<User> users = userService.findAllUsers();
