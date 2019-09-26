@@ -1,5 +1,6 @@
 package pl.coderslab.springbootproject.model;
 
+import org.hibernate.annotations.Type;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.*;
@@ -19,6 +20,9 @@ public class User {
     private String password;
     @Email
     private String email;
+
+    @Type(type = "numeric_boolean")
+    private boolean isAdmin;
 
     @OneToMany(mappedBy = "user")
     private List<Plan> plans;

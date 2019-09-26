@@ -32,8 +32,8 @@
 
 </div>
 <div class="container">
-    <div class="card mt-4">
-        <div class="card-body">
+
+
 
             <table class="table table-hover">
                 <thead>
@@ -109,15 +109,12 @@
 </div>
 
 
-<div class="container">
-
-    <button type="button" class="btn btn-success" id="show">Show Time</button>
-</div>
 
 
 
-</div>
-</div>
+
+
+
 
 </div>
 

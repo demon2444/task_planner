@@ -35,3 +35,9 @@ header {
 .bg-dark{
    color:  bisque!important;
 }
+ul{
+    list-style: none!important;
+    }
+.list-group-item{
+    background-color: lightseagreen!important;
+}

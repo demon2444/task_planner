@@ -23,24 +23,32 @@
 <body>
 <%@include file="fragments/header.jspf" %>
 
+<div class="container">
 
-<div class="card mt-4">
+    <header>Task Planner</header>
+    <div id="day"></div><p id="time"></p>
+
+
+</div>
+<div class="container">
+    <div class="card mt-4">
+
+
+
+
 
 
 <div class="card text-center">
 <div class="card mt-4">
-    <div class="card-header">
 
-
-    </div>
     <div class="card-body">
         <h5 class="card-title">Zaloguj się do serwisu</h5>
 
         <form:form method="post" modelAttribute="user">
 
-            <form:input path="email" placeholder="mail"/>
+            <form:input path="email" placeholder="Email"/>
             <p class="card-text"></p>
-            <form:input path="password" placeholder="password"/>
+            <form:input path="password" placeholder="Hasło"/>
             <p class="card-text"></p>
             <input type="submit" class="btn btn-primary" value="Zaloguj">
         </form:form>
@@ -49,12 +57,13 @@
 
     </div>
     <div class="card-footer text-muted">
-        <div id="time"></div><div id="day"></div>
+
     </div>
 </div>
-</div>
 
-</div>
+
+
+        </div></div></div>
 
 <!-- js -->
 <script src="/js/app.js"></script>
