@@ -76,8 +76,8 @@ public class PlanController {
         return "search";
     }
 
-    @PostMapping("/find")
-    public String findByName(Model model, @RequestParam String searchKey) {
+    @GetMapping("/search")
+    public String findByName(Model model, @RequestParam(defaultValue = "") String searchKey) {
         List<Plan> resultSearch = planService.findByName(searchKey);
         model.addAttribute("resultSearch", resultSearch);
         return "search";

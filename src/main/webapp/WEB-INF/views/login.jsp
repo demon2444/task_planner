@@ -46,7 +46,7 @@
 
         <form:form method="post" modelAttribute="user">
 
-            <form:input path="email" placeholder="Email"/>
+            <form:input path="username" placeholder="Login"/>
             <p class="card-text"></p>
             <form:input path="password" placeholder="Hasło"/>
             <p class="card-text"></p>

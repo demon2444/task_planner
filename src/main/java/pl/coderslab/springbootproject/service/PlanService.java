@@ -8,6 +8,7 @@ import pl.coderslab.springbootproject.repository.PlanRepository;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -35,11 +36,13 @@ public class PlanService {
 
     public void spitDateTime(List<Plan> plans) {
         for (Plan p : plans) {
-
+            try{
             p.setDateStartView(getDate(p.getTimeStart()));
             p.setTimeStartView(getTime(p.getTimeStart()));
             p.setDateStopView(getDate(p.getTimeStop()));
-            p.setTimeStopView(getTime(p.getTimeStop()));
+            p.setTimeStopView(getTime(p.getTimeStop()));}catch (NullPointerException e){
+                // TODO: 26.09.2019 zmien tu cos 
+            }
         }
     }
 
@@ -84,6 +87,9 @@ public class PlanService {
 
     public List<Plan> findByName(String name) {
         List<Plan> planSearch = planRepository.findAllByNameContainingIgnoreCase(name);
+        if(planSearch==null){
+            return new ArrayList<>();
+        }
         spitDateTime(planSearch);
         return planSearch;
     }
