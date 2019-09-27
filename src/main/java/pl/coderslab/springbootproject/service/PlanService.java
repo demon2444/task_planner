@@ -9,6 +9,7 @@ import pl.coderslab.springbootproject.repository.PlanRepository;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class PlanService {
 
     private static final SimpleDateFormat SDF_DATE = new SimpleDateFormat("dd-MM-yyyy");
     private static final SimpleDateFormat SDF_DATE_TIME = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-    private static final SimpleDateFormat SDF_TIME = new SimpleDateFormat("HH-mm-ss");
+    private static final SimpleDateFormat SDF_TIME = new SimpleDateFormat("HH:mm:ss");
 
     private PlanRepository planRepository;
 
@@ -115,7 +116,19 @@ public class PlanService {
     }
 
     public List<Plan> findyByDay(Date timeStart, Long id) {
-        return planRepository.findAllByTimeStartAndId(timeStart, id);
+        Date stop = setDateLimit(timeStart);
+        return planRepository.findAllByTimeStartAndId(timeStart,stop, id);
+    }
+
+    public Date setDateLimit(Date timeStart) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(timeStart);
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.get(Calendar.DAY_OF_MONTH)+1);
+        calendar.set(Calendar.HOUR, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+
+        return calendar.getTime();
     }
 
 

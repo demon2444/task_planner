@@ -37,14 +37,14 @@
 
             <table class="table table-hover">
                 <thead>
-                <tr>
-                    <th scope="col" class="table-danger">Pilne i ważne</th>
-                    <th scope="col" class="table-info">Niepilne ale ważne</th>
+                <tr class="row">
+                    <th scope="col" class="table-danger col-md-6">Pilne i ważne</th>
+                    <th scope="col" class="table-info col-md-6">Niepilne ale ważne</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td class="table-danger">
+                <tr class="row">
+                    <td class="table-danger col-md-6">
                         <c:forEach items="${iu}" var="u">
 
                             ${u.name}
@@ -57,7 +57,7 @@
                     </td>
 
 
-                    <td class="table-info"><c:forEach items="${iNu}" var="u">
+                    <td class="table-info col-md-6"><c:forEach items="${iNu}" var="u">
 
                         ${u.name}
                         ${u.description}
@@ -70,8 +70,8 @@
                 </tr>
 
 
-                <tr>
-                    <td class="table-warning">
+                <tr class="row">
+                    <td class="table-warning col-md-6">
                         <c:forEach items="${nIu}" var="u">
 
                             ${u.name}
@@ -84,7 +84,7 @@
                     </td>
 
 
-                    <td class="table-secondary"><c:forEach items="${nInU}" var="u">
+                    <td class="table-secondary col-md-6"><c:forEach items="${nInU}" var="u">
 
                         ${u.name}
                         ${u.description}
@@ -97,9 +97,9 @@
 
                 </tbody>
                 <thead>
-                <tr>
-                    <th scope="col" class="table-warning">Pilne i nieważne</th>
-                    <th scope="col" class="table-secondary">Niepilne i nieważne</th>
+                <tr class="row">
+                    <th scope="col" class="table-warning col-md-6">Pilne i nieważne</th>
+                    <th scope="col" class="table-secondary col-md-6">Niepilne i nieważne</th>
                 </tr>
                 </thead>
             </table>

@@ -17,8 +17,8 @@ public interface PlanRepository extends JpaRepository<Plan, Long> {
 
     Plan findFirstById(Long id);
 
-    @Query("select p from Plan p where p.timeStart >= :timeStart and p.user.id = :id and p.done = false order by p.timeStart")
-    List<Plan> findAllByTimeStartAndId(Date timeStart, Long id);
+    @Query("select p from Plan p where p.timeStart >= :timeStart AND  p.timeStart < :timeStop  and p.user.id = :id and p.done = false order by p.timeStart")
+    List<Plan> findAllByTimeStartAndId(Date timeStart,Date timeStop, Long id);
 }
 
 

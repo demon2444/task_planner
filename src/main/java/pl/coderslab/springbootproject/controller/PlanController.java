@@ -130,6 +130,9 @@ public class PlanController {
         User user = getUser();
         List<Plan> plans = planService.showPlans(user.getId());
 
+
+
+
         model.addAttribute("plans",plans);
 
 

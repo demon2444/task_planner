@@ -44,8 +44,9 @@ public class UserController {
         if (result.hasErrors()) {
             return "addUser";
         } else {
+            user.setEnabled(true);
             userService.saveUser(user);
-            return "allUsers";
+            return "home";
         }
     }
 

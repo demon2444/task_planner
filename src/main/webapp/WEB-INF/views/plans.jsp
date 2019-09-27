@@ -42,6 +42,7 @@
                     <th scope="col">Opis zadania</th>
                     <th scope="col">Data rozpoczęcia</th>
                     <th scope="col">Godzina rozpoczęcia</th>
+                    <th scope="col">Data zakończenia</th>
                     <th scope="col">Godzina zakończenia</th>
                     <th scope="col">Edytuj</th>
                     <th scope="col">Zakończ</th>
@@ -71,6 +72,7 @@
                         <td>${u.description}</td>
                         <td>${u.dateStartView}</td>
                         <td>${u.timeStartView}</td>
+                        <td>${u.dateStopView}</td>
                         <td>${u.timeStopView}</td>
                         <td>
                             <a href="/plan/update/${u.id}" class="btn btn-info">Edytuj</a></td>

@@ -63,6 +63,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/login">Zaloguj</a>
                     </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user/add">Zarejestruj</a>
+                    </li>
                 </sec:authorize>
 
 
