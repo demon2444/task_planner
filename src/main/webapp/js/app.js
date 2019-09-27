@@ -18,7 +18,7 @@ $(function () {
     })
 
 
-    $(document).ready(function() {
+
         var date = new Date();
 
         var day = date.getDate();
@@ -30,7 +30,6 @@ $(function () {
 
         var today = year + "-" + month + "-" + day;
         $("#theDate").attr("value", today);
-    });
 
 
 })
