@@ -2,18 +2,22 @@ package pl.coderslab.springbootproject.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springbootproject.model.Plan;
+import pl.coderslab.springbootproject.model.User;
 import pl.coderslab.springbootproject.service.PlanService;
+import pl.coderslab.springbootproject.service.UserService;
 
 import javax.validation.Valid;
 import java.util.Date;
 import java.util.List;
+
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 
 @Controller
@@ -21,10 +25,12 @@ import java.util.List;
 public class PlanController {
 
     private PlanService planService;
+    private UserService userService;
 
     @Autowired
-    public PlanController(PlanService planService) {
+    public PlanController(PlanService planService, UserService userService) {
         this.planService = planService;
+        this.userService = userService;
     }
 
 
@@ -53,6 +59,10 @@ public class PlanController {
             plan.setTimeStart(planService.setDate(plan.getDateStartView(), plan.getTimeStartView()));
             plan.setTimeStop(planService.setDate(plan.getDateStopView(), plan.getTimeStopView()));
 
+
+            User user = getUser();
+            plan.setUser(user);
+
             planService.savePlan(plan);
             return "plans";
         }
@@ -78,6 +88,9 @@ public class PlanController {
 
     @GetMapping("/search")
     public String findByName(Model model, @RequestParam(defaultValue = "") String searchKey) {
+        if(searchKey.equals("")){
+            return "noPlans";
+        }
         List<Plan> resultSearch = planService.findByName(searchKey);
         model.addAttribute("resultSearch", resultSearch);
         return "search";
@@ -86,17 +99,39 @@ public class PlanController {
     @GetMapping("/update/{id}")
     public String updatePlan(@PathVariable Long id, Model model) {
         Plan plan = planService.findById(id);
+
+        plan.setTimeStartView(planService.getTime(plan.getTimeStart()));
+        plan.setDateStartView(planService.getDate(plan.getTimeStart()));
+        plan.setTimeStopView(planService.getTime(plan.getTimeStop()));
+        plan.setDateStopView(planService.getDate(plan.getTimeStop()));
+
+        User user = getUser();
+        plan.setUser(user);
+
+
         model.addAttribute("plan",plan);
         return "addPlan";
     }
 
+    public User getUser() {
+        Authentication authentication = getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+
+        return userService.findByUserName(currentPrincipalName);
+    }
+
 
     @PostMapping("/update/{id}")
-    public String updatePlan(@PathVariable @ModelAttribute @Valid Plan id, BindingResult result) {
+    public String updatePlan(@PathVariable Long id, @ModelAttribute @Valid Plan plan, BindingResult result) {
         if (result.hasErrors()) {
             return "addPlan";
         }
-        planService.savePlan(id);
+
+        plan.setTimeStart(planService.setDate(plan.getDateStartView(), plan.getTimeStartView()));
+        plan.setTimeStop(planService.setDate(plan.getDateStopView(), plan.getTimeStopView()));
+
+        planService.savePlan(plan);
         return "plans";
     }
 
@@ -111,7 +146,11 @@ public class PlanController {
 
         Date timeStart = planService.setDate(dayStart, hourStart);
         String timeSes = dayStart + " " +    hourStart;
-        List<Plan> plans = planService.findyByDay(timeStart);
+
+        User user = getUser();
+        Long id = user.getId();
+
+        List<Plan> plans = planService.findyByDay(timeStart, 2L);
         if(plans.isEmpty()) {
             return "noPlans";
         } else {
@@ -148,7 +187,10 @@ public class PlanController {
         plan.setDone(true);
         planService.savePlan(plan);
         Date date = planService.setDateFrom(timeSes);
-        List<Plan> plans = planService.findyByDay(date);
+
+        User user = getUser();
+
+        List<Plan> plans = planService.findyByDay(date, user.getId());
         model.addAttribute("plans", plans);
         return "plans";
     }

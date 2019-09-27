@@ -27,6 +27,7 @@
 <div class="container">
 
     <header>Task Planner</header>
+    <div id="day"></div><p id="time"></p>
 
 
 </div>
@@ -34,8 +35,8 @@
     <div class="card mt-4">
         <div class="card-body">
 
-            Brak Planów na wskazany dzień
-
+            Brak Planów dla wskazanego kryterium
+            <a href="/" class="btn btn-info" >Strona główna</a>
         </div>
     </div>
 </div>
@@ -43,8 +44,10 @@
 
 
 <div class="container">
+    <div class="">
 
-    <a href="/" class="btn btn-info">Powrót</a>
+
+    </div>
 </div>
 </div>
 </div>

@@ -12,6 +12,9 @@
 
 <%@ include file="fragments/header.jspf" %>
 
+
+<div id="day"></div><p id="time"></p>
+
 <table>
     <th>Id</th>
     <th>Firstname</th>

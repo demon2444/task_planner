@@ -41,17 +41,17 @@ public class PlanService {
             p.setTimeStartView(getTime(p.getTimeStart()));
             p.setDateStopView(getDate(p.getTimeStop()));
             p.setTimeStopView(getTime(p.getTimeStop()));}catch (NullPointerException e){
-                // TODO: 26.09.2019 zmien tu cos 
+                // TODO: 26.09.2019 zmien tu cos
             }
         }
     }
 
 
-    private String getTime(Date time) {
+    public String getTime(Date time) {
         return SDF_TIME.format(time);
     }
 
-    private String getDate(Date time) {
+    public String getDate(Date time) {
         return SDF_DATE.format(time);
     }
 
@@ -64,6 +64,18 @@ public class PlanService {
     }
 
     public Date setDate(String date, String time) {
+        Date dateTime = new Date();
+        try {
+            dateTime = SDF_DATE_TIME.parse(date + " " + time);
+        } catch (ParseException ex) {
+
+        }
+        return dateTime;
+    }
+
+
+
+    public Date setDateTosave(String date, String time) {
         Date dateTime = new Date();
         try {
             dateTime = SDF_DATE_TIME.parse(date + " " + time);
@@ -97,8 +109,8 @@ public class PlanService {
         return planRepository.findFirstById(id);
     }
 
-    public List<Plan> findyByDay(Date timeStart) {
-        return planRepository.findAllByTimeStart(timeStart);
+    public List<Plan> findyByDay(Date timeStart, Long id) {
+        return planRepository.findAllByTimeStartAndId(timeStart, id);
     }
 
 

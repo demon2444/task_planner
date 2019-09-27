@@ -15,6 +15,9 @@
 <body>
 <%@ include file="fragments/header.jspf" %>
 
+
+<div id="day"></div><p id="time"></p>
+
     <form:form method="post" modelAttribute="user">
         <form:input path="firstName" placeholder="First name"/><br>
         <form:input path="lastName" placeholder="Last name"/><br>

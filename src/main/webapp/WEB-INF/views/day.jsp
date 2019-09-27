@@ -15,11 +15,11 @@
 <div class="container">
 
     <header>Plan na dziś</header>
-    <div id="time"></div><div id="day"></div>
+    <div id="day"></div><p id="time"></p>
     <div class="card">
 
         <div class="card-body">
-            <a href="/plan/planMatrix" class="btn btn-primary">Back</a>
+            <a href="/" class="btn btn-primary">Strona Główna</a>
         </div>
     </div>
 
@@ -28,7 +28,7 @@
 
 
             <form method="get" action="/plan/dayF">
-                <input type="date" name="dayStart"  id="today" placeholder="Wybierz dzień"/>
+                <input type="date" name="dayStart"  id="theDate" placeholder="Wybierz dzień"/>
                 <input type="time" name="hourStart" value="07:00" placeholder="Wybierz godzinę"/>
 
 

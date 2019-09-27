@@ -27,6 +27,7 @@
 <div class="container">
 
     <header>Task Planner</header>
+    <div id="day"></div><p id="time"></p>
 
 
 </div>
@@ -89,7 +90,7 @@
 
 <div class="container">
 
-    <button type="button" class="btn btn-success" id="show">Show Time</button>
+
 </div>
 </div>
 </div>

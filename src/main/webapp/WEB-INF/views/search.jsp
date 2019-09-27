@@ -27,6 +27,7 @@
 <div class="container">
 
     <header>Task Planner</header>
+    <div id="day"></div><p id="time"></p>
 
 
 </div>

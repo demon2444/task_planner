@@ -22,8 +22,7 @@
 <div class="container">
 
     <header>Know How czyli po krótce z czym to się je</header>
-    <div id="time"></div>
-    <p id="day"></p>
+    <div id="day"></div><p id="time"></p>
 
 
     <div class="card" style="width: 70rem;">

@@ -27,7 +27,7 @@
 <div class="container">
 
     <header>Task Planner</header>
-    <div id="time"></div>
+    <div id="day"></div><p id="time"></p>
 
 
 </div>
@@ -50,7 +50,7 @@
                             ${u.name}
                             ${u.description}
                             ${u.timeStartView}
-                            ${u.timeStop}
+                            ${u.timeStop}<br><br>
 
 
                         </c:forEach>
@@ -62,7 +62,7 @@
                         ${u.name}
                         ${u.description}
                         ${u.timeStartView}
-                        ${u.timeStop}
+                        ${u.timeStop}<br><br>
 
 
                     </c:forEach>
@@ -77,7 +77,7 @@
                             ${u.name}
                             ${u.description}
                             ${u.timeStartView}
-                            ${u.timeStop}
+                            ${u.timeStop}<br><br>
 
 
                         </c:forEach>
@@ -89,7 +89,7 @@
                         ${u.name}
                         ${u.description}
                         ${u.timeStartView}
-                        ${u.timeStopView}
+                        ${u.timeStopView}<br><br>
 
                     </c:forEach></td>
                 </tr>

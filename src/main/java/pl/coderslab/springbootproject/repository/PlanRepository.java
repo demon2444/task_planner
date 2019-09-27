@@ -18,8 +18,9 @@ public interface PlanRepository extends JpaRepository<Plan, Long> {
     List<Plan> findAllByNameContainingIgnoreCase(String name);
 
     Plan findFirstById(Long id);
-    @Query("select p from Plan p where p.timeStart >= :timeStart and p.done = false")
-    List<Plan> findAllByTimeStart(Date timeStart);
+
+    @Query("select p from Plan p where p.timeStart >= :timeStart and p.user.id = :id and p.done = false ")
+    List<Plan> findAllByTimeStartAndId(Date timeStart, Long id);
 }
 
 

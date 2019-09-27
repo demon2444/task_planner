@@ -14,7 +14,7 @@
 
 <div class="container">
 
-    <header>Dodaj swój plan <div id="time"></div></header>
+    <header>Dodaj swój plan</header><div id="day"></div><p id="time"></p>
 
     <div class="card">
 
@@ -51,7 +51,7 @@
 </div>
 
 </div>
-<script src="../../js/time.js"></script>
-
+<script src="/js/app.js"></script>
+<script src="../../js/time.js"></script
 </body>
 </html>
