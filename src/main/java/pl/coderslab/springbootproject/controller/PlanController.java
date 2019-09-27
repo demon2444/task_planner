@@ -36,7 +36,10 @@ public class PlanController {
 
     @GetMapping("/show/{id}")
     public String showMyPlan(Model model, @PathVariable Long id) {
-        List<Plan> plans = planService.showPlans(id);
+
+        ;
+
+        List<Plan> plans = planService.showPlans(getUser().getId());
         model.addAttribute("plans", plans);
         return "plans";
     }
@@ -49,7 +52,7 @@ public class PlanController {
     }
 
     @PostMapping("/add")
-    public String addUser(@ModelAttribute @Valid Plan plan, BindingResult result) {
+    public String addUser(@ModelAttribute @Valid Plan plan, BindingResult result, Model model) {
         List<ObjectError> err = result.getAllErrors();
         if (result.hasErrors()) {
             System.err.println(err);
@@ -64,19 +67,34 @@ public class PlanController {
             plan.setUser(user);
 
             planService.savePlan(plan);
+
+
+
+            List<Plan> plans = planService.showPlans(user.getId());
+
+
+
+
+            model.addAttribute("plans",plans);
+
+
             return "plans";
         }
     }
 
     @GetMapping("/planMatrix")
     public String planMatrix(Model model) {
-        List<Plan> importantAndUrgent = planService.findByImportantAndUrgent(true, true);
+
+        User user = getUser();
+
+
+        List<Plan> importantAndUrgent = planService.findByImportantAndUrgent(true, true, user.getId());
         model.addAttribute("iu", importantAndUrgent);
-        List<Plan> importantNotUrgent = planService.findByImportantAndUrgent(true, false);
+        List<Plan> importantNotUrgent = planService.findByImportantAndUrgent(true, false, user.getId());
         model.addAttribute("iNu", importantNotUrgent);
-        List<Plan> notImportantUrgent = planService.findByImportantAndUrgent(false, true);
+        List<Plan> notImportantUrgent = planService.findByImportantAndUrgent(false, true, user.getId());
         model.addAttribute("nIu", notImportantUrgent);
-        List<Plan> notImportantNotUrgent = planService.findByImportantAndUrgent(false, false);
+        List<Plan> notImportantNotUrgent = planService.findByImportantAndUrgent(false, false, user.getId());
         model.addAttribute("nInU", notImportantNotUrgent);
         return "planMatrix";
     }
@@ -154,7 +172,7 @@ public class PlanController {
         User user = getUser();
         Long id = user.getId();
 
-        List<Plan> plans = planService.findyByDay(timeStart, 2L);
+        List<Plan> plans = planService.findyByDay(timeStart, id);
         if(plans.isEmpty()) {
             return "noPlans";
         } else {

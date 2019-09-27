@@ -75,7 +75,7 @@
 
 <div class="container">
 
-    <button type="button" class="btn btn-success" id="show">Show Time</button>
+    
 </div>
 </div>
 </div>

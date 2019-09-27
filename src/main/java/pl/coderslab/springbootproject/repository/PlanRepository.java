@@ -9,9 +9,11 @@ import java.util.List;
 
 public interface PlanRepository extends JpaRepository<Plan, Long> {
 
+    @Query("select p from Plan p where p.user.id = :id")
     List<Plan> findAllByUserId(Long id);
 
-    List<Plan> findAllByImportantAndUrgent(boolean important, boolean urgent);
+    @Query("select p from Plan p where p.important = :important and p.urgent = :urgent and p.user.id = :id")
+    List<Plan> findAllByImportantAndUrgent(boolean important, boolean urgent, Long id);
 
     List<Plan> findAllByNameContainingIgnoreCase(String name);
 

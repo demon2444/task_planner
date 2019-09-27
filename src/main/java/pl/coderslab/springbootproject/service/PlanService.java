@@ -65,8 +65,8 @@ public class PlanService {
         planRepository.save(plan);
     }
 
-    public List<Plan> findByImportantAndUrgent(boolean important, boolean urgent) {
-        return planRepository.findAllByImportantAndUrgent(important, urgent);
+    public List<Plan> findByImportantAndUrgent(boolean important, boolean urgent, Long id) {
+        return planRepository.findAllByImportantAndUrgent(important, urgent,  id);
     }
 
     public Date setDate(String date, String time) {
