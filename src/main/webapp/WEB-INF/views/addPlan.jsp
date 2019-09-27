@@ -5,7 +5,6 @@
 <head>
 
 
-
     <title>Dodaj Plan</title>
 </head>
 <body>
@@ -14,7 +13,9 @@
 
 <div class="container">
 
-    <header>Dodaj swój plan</header><div id="day"></div><p id="time"></p>
+    <header>Dodaj swój plan</header>
+    <div id="day"></div>
+    <p id="time"></p>
 
     <div class="card">
 
@@ -27,28 +28,60 @@
         <div class="card-body">
 
 
-<form:form method="post" modelAttribute="plan">
-    <form:input path="name" placeholder="Nazwa Planu"/><br>
-    <form:textarea path="description" placeholder="Opis planu"/><br>
-    <form:hidden path="user.id" placeholder="User Id"/><br>
-    <form:input type="date" path="dateStartView" placeholder="Start day"/>
-    <form:input type="time" path="timeStartView" placeholder="Start time"/><br>
-    <form:input type="date" path="dateStopView" placeholder="Stop day"/>
-    <form:input type="time" path="timeStopView" placeholder="Stop time"/><br>
+            <form:form method="post" modelAttribute="plan">
 
 
-    <label>Ważne</label>
-    <form:radiobutton path="important" value="true"/>Tak
-    <form:radiobutton path="important" value="false"/>Nie<br>
-    <label>Pilne</label>
-    <form:radiobutton path="urgent" value="true"/>Tak
-    <form:radiobutton path="urgent" value="false"/>Nie<br>
-    <input type="submit" value="Dodaj">
-</form:form>
+                <div class="row">
+                    <div class="col">
+                        <form:input path="name" placeholder="Nazwa Planu" class="form-control"/>
+                    </div>
+                    <div class="col">
+                        <form:textarea path="description" placeholder="Opis planu" cols="40" rows="3"/>
+                        <form:hidden path="user.id" placeholder="User Id" class="form-control"/>
+                    </div>
+                    <div class="col">
+
+                        <form:input type="date" path="dateStartView" placeholder="Start day"/>
+
+                        <form:input type="time" path="timeStartView" placeholder="Start time"/>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <label>Ważne</label>
+                        <form:radiobutton path="important" value="true"/>Tak
+                        <form:radiobutton path="important" value="false"/>Nie
+                    </div>
+                    <div class="col">
+                        <label>Pilne</label>
+                        <form:radiobutton path="urgent" value="true"/>Tak
+                        <form:radiobutton path="urgent" value="false"/>Nie
+                    </div>
+                    <div class="col">
+                        <form:input type="date" path="dateStopView" placeholder="Stop day"/>
+                        <form:input type="time" path="timeStopView" placeholder="Stop time"/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                    <input type="submit" value="Dodaj" class="btn btn-outline-info my-2 my-sm-0">
+                    </form:form>
+                    </div>
+                </div>
+                </div>
 
 
-</div>
-</div>
+
+
+
+
+
+
+
+        </div>
+    </div>
 
 </div>
 <script src="/js/app.js"></script>
