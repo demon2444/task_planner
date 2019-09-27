@@ -30,7 +30,7 @@ header {
     background: rgba(0, 0, 0, .1);
 }
 .card-body {
-    background-color: mediumturquoise!important;
+    background-color: burlywood!important;
 }
 .bg-dark{
    color:  bisque!important;
@@ -40,5 +40,5 @@ ul{
     }
 .list-group-item{
     background-color: lightseagreen!important;
-    
+
 }

@@ -35,7 +35,9 @@ document.addEventListener("DOMContentLoaded", function () {
         if (day < 10) day = "0" + day;
 
         let today = year + "-" + month + "-" + day;
+
         $("#theDate").attr("today", today);
+
     });
 
     let days = ['Niedziela', 'Poniedziałek', 'Wtorek', 'Środa', 'Czwartek', 'Piątek', 'Sobota'];

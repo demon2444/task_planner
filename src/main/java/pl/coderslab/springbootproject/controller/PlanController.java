@@ -113,17 +113,11 @@ public class PlanController {
         return "addPlan";
     }
 
-    public User getUser() {
-        Authentication authentication = getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
 
-
-        return userService.findByUserName(currentPrincipalName);
-    }
 
 
     @PostMapping("/update/{id}")
-    public String updatePlan(@PathVariable Long id, @ModelAttribute @Valid Plan plan, BindingResult result) {
+    public String updatePlan(@PathVariable Long id, @ModelAttribute @Valid Plan plan, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "addPlan";
         }
@@ -132,6 +126,13 @@ public class PlanController {
         plan.setTimeStop(planService.setDate(plan.getDateStopView(), plan.getTimeStopView()));
 
         planService.savePlan(plan);
+
+        User user = getUser();
+        List<Plan> plans = planService.showPlans(user.getId());
+
+        model.addAttribute("plans",plans);
+
+
         return "plans";
     }
 
@@ -195,6 +196,14 @@ public class PlanController {
         return "plans";
     }
 
+
+    public User getUser() {
+        Authentication authentication = getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+
+        return userService.findByUserName(currentPrincipalName);
+    }
 
 
 }

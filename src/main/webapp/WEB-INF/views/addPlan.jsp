@@ -41,9 +41,9 @@
                     </div>
                     <div class="col">
 
-                        <form:input type="date" path="dateStartView" placeholder="Start day"/>
+                        <form:input type="date" path="dateStartView" placeholder="Start day" id="theDate"/>
 
-                        <form:input type="time" path="timeStartView" placeholder="Start time"/>
+                        <form:input type="time" path="timeStartView" placeholder="Start time" value="07:00"/>
 
                     </div>
                 </div>
@@ -60,8 +60,8 @@
                         <form:radiobutton path="urgent" value="false"/>Nie
                     </div>
                     <div class="col">
-                        <form:input type="date" path="dateStopView" placeholder="Stop day"/>
-                        <form:input type="time" path="timeStopView" placeholder="Stop time"/>
+                        <form:input type="date" path="dateStopView" placeholder="Stop day" id="now"/>
+                        <form:input type="time" path="timeStopView" placeholder="Stop time" value="08:00"/>
                     </div>
                 </div>
                 <div class="row">
