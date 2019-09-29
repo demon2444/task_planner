@@ -131,5 +131,12 @@ public class PlanService {
         return calendar.getTime();
     }
 
+    public Long countTime(Date date) {
+        Date date1 = new Date();
+
+        return date.getTime();
+    }
+
+
 
 }

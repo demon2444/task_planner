@@ -14,6 +14,7 @@ import pl.coderslab.springbootproject.service.PlanService;
 import pl.coderslab.springbootproject.service.UserService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -69,13 +70,10 @@ public class PlanController {
             planService.savePlan(plan);
 
 
-
             List<Plan> plans = planService.showPlans(user.getId());
 
 
-
-
-            model.addAttribute("plans",plans);
+            model.addAttribute("plans", plans);
 
 
             return "plans";
@@ -106,7 +104,7 @@ public class PlanController {
 
     @GetMapping("/search")
     public String findByName(Model model, @RequestParam(defaultValue = "") String searchKey) {
-        if(searchKey.equals("")){
+        if (searchKey.equals("")) {
             return "noPlans";
         }
         List<Plan> resultSearch = planService.findByName(searchKey);
@@ -127,11 +125,9 @@ public class PlanController {
         plan.setUser(user);
 
 
-        model.addAttribute("plan",plan);
+        model.addAttribute("plan", plan);
         return "addPlan";
     }
-
-
 
 
     @PostMapping("/update/{id}")
@@ -149,9 +145,7 @@ public class PlanController {
         List<Plan> plans = planService.showPlans(user.getId());
 
 
-
-
-        model.addAttribute("plans",plans);
+        model.addAttribute("plans", plans);
 
 
         return "plans";
@@ -164,18 +158,27 @@ public class PlanController {
 
 
     @GetMapping("/dayF")
-    public String dayScheduleFind(Model model, @RequestParam(defaultValue = "") String dayStart, @RequestParam(defaultValue = "") String hourStart ) {
+    public String dayScheduleFind(Model model, @RequestParam(defaultValue = "") String dayStart, @RequestParam(defaultValue = "") String hourStart) {
 
         Date timeStart = planService.setDate(dayStart, hourStart);
-        String timeSes = dayStart + " " +    hourStart;
+        String timeSes = dayStart + " " + hourStart;
 
         User user = getUser();
         Long id = user.getId();
 
+
         List<Plan> plans = planService.findyByDay(timeStart, id);
-        if(plans.isEmpty()) {
+
+        if (plans.isEmpty()) {
             return "noPlans";
         } else {
+            List<Long> time = new ArrayList<>();
+            for (Plan p: plans) {
+                time.add(planService.countTime(p.getTimeStop()));
+            }
+            model.addAttribute("time", time);
+
+
             planService.spitDateTime(plans);
             model.addAttribute("plans", plans);
             model.addAttribute("timeSes", timeSes);
