@@ -134,7 +134,7 @@ public class PlanService {
     public Long countTime(Date date) {
         Date date1 = new Date();
 
-        return date.getTime();
+        return date.getTime() - date1.getTime();
     }
 
 
