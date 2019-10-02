@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.springbootproject.model.User;
-import pl.coderslab.springbootproject.service.UserService;
 import pl.coderslab.springbootproject.service.UserServiceImpl;
 
 @Controller

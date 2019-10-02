@@ -91,14 +91,7 @@
 
 
 <div class="container">
-<table border="1">
-    <tr>
-        <c:forEach items="${time}" var="t">
-            <td>${t}</td>
 
-        </c:forEach>
-    </tr>
-</table>
 
 </div>
 </div>

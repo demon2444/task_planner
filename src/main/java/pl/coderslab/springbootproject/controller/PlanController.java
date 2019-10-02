@@ -2,7 +2,6 @@ package pl.coderslab.springbootproject.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,13 +11,13 @@ import pl.coderslab.springbootproject.model.Plan;
 import pl.coderslab.springbootproject.model.User;
 import pl.coderslab.springbootproject.service.PlanService;
 import pl.coderslab.springbootproject.service.UserService;
+import pl.coderslab.springbootproject.service.UserServiceImpl;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 
 @Controller
@@ -27,11 +26,13 @@ public class PlanController {
 
     private PlanService planService;
     private UserService userService;
+    private UserServiceImpl userServiceImpl;
 
     @Autowired
-    public PlanController(PlanService planService, UserService userService) {
+    public PlanController(PlanService planService, UserService userService, UserServiceImpl userServiceImpl) {
         this.planService = planService;
         this.userService = userService;
+        this.userServiceImpl = userServiceImpl;
     }
 
 
@@ -40,7 +41,7 @@ public class PlanController {
 
         ;
 
-        List<Plan> plans = planService.showPlans(getUser().getId());
+        List<Plan> plans = planService.showPlans(userServiceImpl.getUser().getId());
         model.addAttribute("plans", plans);
         return "plans";
     }
@@ -64,7 +65,7 @@ public class PlanController {
             plan.setTimeStop(planService.setDate(plan.getDateStopView(), plan.getTimeStopView()));
 
 
-            User user = getUser();
+            User user = userServiceImpl.getUser();
             plan.setUser(user);
 
             planService.savePlan(plan);
@@ -83,7 +84,7 @@ public class PlanController {
     @GetMapping("/planMatrix")
     public String planMatrix(Model model) {
 
-        User user = getUser();
+        User user = userServiceImpl.getUser();
 
 
         List<Plan> importantAndUrgent = planService.findByImportantAndUrgent(true, true, user.getId());
@@ -121,7 +122,7 @@ public class PlanController {
         plan.setTimeStopView(planService.getTime(plan.getTimeStop()));
         plan.setDateStopView(planService.getDate(plan.getTimeStop()));
 
-        User user = getUser();
+        User user = userServiceImpl.getUser();
         plan.setUser(user);
 
 
@@ -141,7 +142,7 @@ public class PlanController {
 
         planService.savePlan(plan);
 
-        User user = getUser();
+        User user = userServiceImpl.getUser();
         List<Plan> plans = planService.showPlans(user.getId());
 
 
@@ -163,7 +164,7 @@ public class PlanController {
         Date timeStart = planService.setDate(dayStart, hourStart);
         String timeSes = dayStart + " " + hourStart;
 
-        User user = getUser();
+        User user = userServiceImpl.getUser();
         Long id = user.getId();
 
 
@@ -186,24 +187,10 @@ public class PlanController {
         }
 
 
-        //return "day";
+
     }
 
-    /*@PostMapping("/day")
-    public String daySchedule(Model model, @RequestParam String dayStart, @RequestParam String hourStart) {
-        Date timeStart = planService.setDate(dayStart, hourStart);
-        String timeSes = dayStart + " " +    hourStart;
-        List<Plan> plans = planService.findyByDay(timeStart);
-        if(plans.isEmpty()) {
-            return "noPlans";
-        } else {
-            planService.spitDateTime(plans);
-            model.addAttribute("plans", plans);
-            model.addAttribute("timeSes", timeSes);
-            return "plans";
-        }
 
-    }*/
 
 
     @GetMapping("/done/{id}/{timeSes}")
@@ -213,7 +200,7 @@ public class PlanController {
         planService.savePlan(plan);
         Date date = planService.setDateFrom(timeSes);
 
-        User user = getUser();
+        User user = userServiceImpl.getUser();
 
         List<Plan> plans = planService.findyByDay(date, user.getId());
         model.addAttribute("plans", plans);
@@ -221,13 +208,6 @@ public class PlanController {
     }
 
 
-    public User getUser() {
-        Authentication authentication = getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-
-
-        return userService.findByUserName(currentPrincipalName);
-    }
 
 
 }

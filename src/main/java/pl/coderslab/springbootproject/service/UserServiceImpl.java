@@ -2,6 +2,7 @@ package pl.coderslab.springbootproject.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,8 @@ import pl.coderslab.springbootproject.repository.UserRepository;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
+
+import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 @Service
 @Transactional
@@ -49,6 +52,14 @@ public class UserServiceImpl implements UserService{
     @Override
     public User findByUserName(String userName) {
         return userRepository.findUserByUsername(userName);
+    }
+
+    public User getUser() {
+        Authentication authentication = getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
+
+        return findByUserName(currentPrincipalName);
     }
 
 }

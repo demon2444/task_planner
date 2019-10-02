@@ -8,7 +8,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springbootproject.model.User;
 import pl.coderslab.springbootproject.service.UserService;
-import pl.coderslab.springbootproject.service.UserServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;

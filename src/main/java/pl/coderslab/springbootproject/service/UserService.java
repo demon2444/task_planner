@@ -1,6 +1,5 @@
 package pl.coderslab.springbootproject.service;
 
-import org.springframework.context.annotation.Bean;
 import pl.coderslab.springbootproject.model.User;
 
 import java.util.List;
