@@ -27,7 +27,8 @@
 <div class="container">
 
     <header>Task Planner</header>
-    <div id="day"></div><p id="time"></p>
+    <div id="day"></div>
+    <p id="time"></p>
 
 
 </div>
@@ -68,17 +69,17 @@
                         </c:otherwise>
                     </c:choose>
 
-                        <td>${u.name}</td>
-                        <td>${u.description}</td>
-                        <td>${u.dateStartView}</td>
-                        <td>${u.timeStartView}</td>
-                        <td>${u.dateStopView}</td>
-                        <td>${u.timeStopView}</td>
-                        <td>
-                            <a href="/plan/update/${u.id}" class="btn btn-info">Edytuj</a></td>
-                        <td>
-                            <a href="/plan/done/${u.id}/${timeSes}" class="btn btn-success">Zrobione</a>
-                        </td>
+                    <td>${u.name}</td>
+                    <td>${u.description}</td>
+                    <td>${u.dateStartView}</td>
+                    <td>${u.timeStartView}</td>
+                    <td>${u.dateStopView}</td>
+                    <td>${u.timeStopView}</td>
+                    <td>
+                        <a href="/plan/update/${u.id}" class="btn btn-info">Edytuj</a></td>
+                    <td>
+                        <a href="/plan/done/${u.id}/${timeSes}" class="btn btn-success">Zrobione</a>
+                    </td>
                     </tr>
                 </c:forEach>
                 </tbody>
@@ -91,7 +92,18 @@
 
 
 <div class="container">
+    <table border="1">
 
+        <c:forEach items="${time}" var="t">
+            <tr>
+                <td>${t.days}</td>
+                <td>${t.hours}</td>
+                <td>${t.minutes}</td>
+                <td>${t.seconds}</td>
+            </tr>
+        </c:forEach>
+
+    </table>
 
 </div>
 </div>

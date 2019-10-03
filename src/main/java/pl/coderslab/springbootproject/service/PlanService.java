@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.coderslab.springbootproject.model.Plan;
+import pl.coderslab.springbootproject.model.TimeCount;
 import pl.coderslab.springbootproject.repository.PlanRepository;
 
 import java.text.ParseException;
@@ -12,6 +13,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
+
+
 
 
 @Service
@@ -131,10 +135,43 @@ public class PlanService {
         return calendar.getTime();
     }
 
-    public Long countTime(Date date) {
-        Date date1 = new Date();
+    public TimeCount countTime(Date dateStop) {
 
-        return date.getTime() - date1.getTime();
+    List<TimeCount> timeCounts = new ArrayList<>();
+
+// Custom date format
+
+        Date d1 = new Date();
+        Date d2 = dateStop;
+        /*try {
+
+            d2 = SDF_DATE_TIME.parse(dateStop);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
+
+// Get msec from each, and subtract.
+        long diff = d2.getTime() - d1.getTime();
+        long diffSeconds = diff / 1000 % 60;
+        long diffMinutes = diff / (60 * 1000) % 60;
+        long diffHours = diff / (60 * 60 * 1000);
+        long diffdays = diff / (60 * 60 * 1000 * 24);
+
+        TimeCount timeCount = new TimeCount(diffdays, diffHours, diffMinutes, diffSeconds);
+
+        if(diffSeconds < 0) {
+            timeCount.setDays(0l);
+            timeCount.setHours(0l);
+            timeCount.setMinutes(0l);
+            timeCount.setSeconds(0l);
+        }
+
+
+
+
+    return timeCount;
+
+
     }
 
 

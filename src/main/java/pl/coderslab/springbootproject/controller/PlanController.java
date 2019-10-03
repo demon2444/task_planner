@@ -8,6 +8,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 import pl.coderslab.springbootproject.model.Plan;
+import pl.coderslab.springbootproject.model.TimeCount;
 import pl.coderslab.springbootproject.model.User;
 import pl.coderslab.springbootproject.service.PlanService;
 import pl.coderslab.springbootproject.service.UserService;
@@ -173,7 +174,7 @@ public class PlanController {
         if (plans.isEmpty()) {
             return "noPlans";
         } else {
-            List<Long> time = new ArrayList<>();
+            List<TimeCount> time = new ArrayList<>();
             for (Plan p: plans) {
                 time.add(planService.countTime(p.getTimeStop()));
             }
